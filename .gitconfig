@@ -1,0 +1,12 @@
+[user]
+	name = Christian Drumm
+	email = drumm@fh-aachen.de
+[core]
+	autocrlf = input
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    ps = push
+    pl = pull
