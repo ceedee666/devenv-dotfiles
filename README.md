@@ -19,6 +19,11 @@ git clone --bare https://github.com/ceedee666/devenv-dotfiles.git $HOME/.cfg
 config checkout
 ```
 
+In addition you should set up the repository to hide files which are not explicitly tracked. This way e.g. config status will only show tracked files.
+```bash
+config config --local status.showUntrackedFiles no
+```
+
 ## How to obtain support
 
 This content is provided "as-is" with no other support.
