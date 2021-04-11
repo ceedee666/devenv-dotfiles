@@ -11,6 +11,14 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
+Plug 'dense-analysis/ale'
+Plug '$HOME/Documents/development/vim-cds/'
+Plug 'junegunn/fzf' 
+Plug 'kassio/neoterm'
+Plug 'jiangmiao/auto-pairs'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 
 call plug#end()
 
@@ -19,9 +27,14 @@ syntax on
 
 colorscheme nord
 
-set ts=4
-set shiftwidth=4
-set softtabstop=4
+set swapfile
+set dir=~/tmp
+
+set nobackup
+
+set ts=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 set splitbelow
@@ -80,3 +93,15 @@ function! s:show_documentation()
         call CocAction('doHover')
     endif
 endfunction
+
+" Shortcut for Nerd Tree
+map <C-n> :NERDTreeToggle<CR>
+
+" kassio/neoterm
+let g:neoterm_default_mod = 'botright'
+let g:neoterm_autoinsert = 1
+let g:neoterm_autoscroll = 1
+let g:neoterm_term_per_tab = 1
+nnoremap <c-y> :Ttoggle<CR>
+inoremap <c-y> <Esc>:Ttoggle<CR>
+tnoremap <c-y> <c-\><c-n>:Ttoggle<CR>
