@@ -1,8 +1,13 @@
+"" disable use of LSP - part of integration of CoC
+" https://github.com/dense-analysis/ale#faq-coc-nvim
+let g:ale_disable_lsp = 1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
@@ -15,7 +20,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 Plug 'dense-analysis/ale'
 Plug '$HOME/Documents/development/vim-cds/'
-Plug 'junegunn/fzf' 
+Plug 'junegunn/fzf'
 Plug 'kassio/neoterm'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -23,6 +28,9 @@ Plug 'vim-test/vim-test'
 
 call plug#end()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" general vim settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 
 colorscheme dracula
@@ -57,7 +65,7 @@ let mapleader = ","
 "Allow backspace over everything
 set backspace=indent,eol,start
 
-" All numbers are treated as decimal numbers 
+" All numbers are treated as decimal numbers
 set nrformats=
 
 " Allow to move between panes using the <C-j>, <C-k> ...
@@ -65,6 +73,10 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" autocmd to automatically spellcheck MD files
+autocmd FileType markdown setlocal spell
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configuration for coc.vim
@@ -78,8 +90,8 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
@@ -94,11 +106,11 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
 
 " GoTo code navigation.
@@ -112,6 +124,17 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_fixers = {
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'javascript': ['eslint'],
+      \   'python': ['isort', 'black']
+      \}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcut for Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -148,6 +171,6 @@ nmap <silent> t<C-g> :TestVisit<CR>
 augroup test
   autocmd!
   autocmd BufWrite * if test#exists() |
-    \   TestFile |
-    \ endif
+        \   TestFile |
+        \ endif
 augroup END
