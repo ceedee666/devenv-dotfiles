@@ -16,11 +16,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug '$HOME/Documents/development/vim-cds/'
-Plug 'junegunn/fzf'
 Plug 'kassio/neoterm'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -135,6 +136,7 @@ let g:ale_fixers = {
 
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcut for Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
