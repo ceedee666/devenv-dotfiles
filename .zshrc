@@ -13,6 +13,9 @@ export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 # Add local npm commands to the PATH
 export PATH="node_modules/.bin:$PATH"
 
+# Add local .scripts folder to PATH
+export PATH="~/.scripts:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
