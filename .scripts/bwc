@@ -2,24 +2,30 @@
 
 set -e
 
-# Copy uname and passwd
-copy_uname_and_passwd () {
+copy_data () {
+  local entry=$1
+
   # Print the name of the selected login
-  echo "Name: $(printf "%s" "$1" | jq -r ".name")"
+  echo "Name: $(printf "%s" "$entry" | jq -r ".name")"
   echo "> Copying Username"
   # Copy the username to the clipboard
-  printf "%s" "$1" | jq -r ".login.username" | pbcopy
+  printf "%s" "$entry" | jq -r ".login.username" | pbcopy
   echo "> Press any key to copy password..."
   # Wait for user input before coping the password
   read
   echo "> Copying Password"
   # Copy the password to the clipboard
-  printf "%s" "$1" | jq -r ".login.password" | pbcopy
+  printf "%s" "$entry" | jq -r ".login.password" | pbcopy
 }
 
 main() {
+  local searchterm=$1
+
+  #Unlock the vault an store the session key
+  local sessionkey=$(bw unlock --raw)
+
   # Search for passwords using the search term
-  logins="$(bw list items --search $1)"
+  local logins="$(bw list items --search $searchterm --session=$sessionkey)"
 
   if [ $(printf "%s" "$logins" | jq ". | length") -eq 1 ]
   then
@@ -29,7 +35,7 @@ main() {
     login="$(printf "%s" "$logins" | jq ".[] | select(.name == \"$name\")")"
   fi
 
-  copy_uname_and_passwd $login
+  copy_data $login
 }
 
 main "$@"
