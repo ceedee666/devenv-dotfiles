@@ -3,39 +3,54 @@
 set -e
 
 copy_data () {
-  local entry=$1
+  local id=$1
+  local login=$2
+  local sessionkey=$3
+  local totp
 
-  # Print the name of the selected login
-  echo "Name: $(printf "%s" "$entry" | jq -r ".name")"
-  echo "> Copying Username"
+  echo "Name: $(printf "%s" "$login" | jq -r ".name")"
+
   # Copy the username to the clipboard
-  printf "%s" "$entry" | jq -r ".login.username" | pbcopy
-  echo "> Press any key to copy password..."
+  echo "> Copying Username"
+  printf "%s" "$login" | jq -r ".login.username" | pbcopy
+
   # Wait for user input before coping the password
+  echo "> Press any key to copy password..."
   read
-  echo "> Copying Password"
+
   # Copy the password to the clipboard
-  printf "%s" "$entry" | jq -r ".login.password" | pbcopy
+  echo "> Copying Password"
+  printf "%s" "$login" | jq -r ".login.password" | pbcopy
+
+  # Copy a TOTP Token if available
+  totp=$(printf "%s" "$login" | jq -r ".login.totp")
+
+  if [[ $totp != "null" ]]; then
+    echo "> Copying TOTP Token"
+    bw get totp $id --session $sessionkey | pbcopy
+  fi
 }
 
 main() {
   local searchterm=$1
+  local sessionkey logins login id
 
   #Unlock the vault an store the session key
-  local sessionkey=$(bw unlock --raw)
+  sessionkey=$(bw unlock --raw)
 
   # Search for passwords using the search term
-  local logins="$(bw list items --search $searchterm --session=$sessionkey)"
+  logins=$(bw list items --search $searchterm --session $sessionkey)
 
-  if [ $(printf "%s" "$logins" | jq ". | length") -eq 1 ]
-  then
-    login="$(printf "%s" "$logins" | jq ".[0]")"
-  else
-    name="$(printf "%s" "$logins" | jq -r ".[].name" | fzf --reverse)"
-    login="$(printf "%s" "$logins" | jq ".[] | select(.name == \"$name\")")"
+  id=$(printf "%s" "$logins" \
+    | jq -r '.[] | "\(.name)\t\(.login.username)\t\(.id)"' \
+    | fzf --reverse --with-nth=1,2 --delimiter="\t" --select-1 --exit-0 \
+    | awk -F"\t" '{print $3}'
+  )
+
+  if [[ -n $id ]]; then
+    login="$(printf "%s" "$logins" | jq ".[] | select(.id == \"$id\")")"
+    copy_data $id $login $sessionkey
   fi
-
-  copy_data $login
 }
 
 main "$@"
