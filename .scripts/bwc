@@ -26,6 +26,9 @@ copy_data () {
   totp=$(jq -r ".login.totp" <<< $login)
 
   if [[ $totp != "null" ]]; then
+    # Wait for user input before coping the totp token
+    echo "> Press any key to copy TOTP Token..."
+    read
     echo "> Copying TOTP Token"
     bw get totp $id --session $sessionkey | pbcopy
   fi
