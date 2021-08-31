@@ -8,11 +8,11 @@ copy_data () {
   local sessionkey=$3
   local totp
 
-  echo "Name: $(printf "%s" "$login" | jq -r ".name")"
+  echo "Name: $(jq -r ".name" <<< $login)"
 
   # Copy the username to the clipboard
   echo "> Copying Username"
-  printf "%s" "$login" | jq -r ".login.username" | pbcopy
+  jq -r ".login.username" <<< $login | pbcopy
 
   # Wait for user input before coping the password
   echo "> Press any key to copy password..."
@@ -20,10 +20,10 @@ copy_data () {
 
   # Copy the password to the clipboard
   echo "> Copying Password"
-  printf "%s" "$login" | jq -r ".login.password" | pbcopy
+  jq -r ".login.password" <<< $login | pbcopy
 
   # Copy a TOTP Token if available
-  totp=$(printf "%s" "$login" | jq -r ".login.totp")
+  totp=$(jq -r ".login.totp" <<< $login)
 
   if [[ $totp != "null" ]]; then
     echo "> Copying TOTP Token"
@@ -41,14 +41,13 @@ main() {
   # Search for passwords using the search term
   logins=$(bw list items --search $searchterm --session $sessionkey)
 
-  id=$(printf "%s" "$logins" \
-    | jq -r '.[] | "\(.name)\t\(.login.username)\t\(.id)"' \
+  id=$(jq -r '.[] | "\(.name)\t\(.login.username)\t\(.id)"' <<< $logins \
     | fzf --reverse --with-nth=1,2 --delimiter="\t" --select-1 --exit-0 \
     | awk -F"\t" '{print $3}'
   )
 
   if [[ -n $id ]]; then
-    login="$(printf "%s" "$logins" | jq ".[] | select(.id == \"$id\")")"
+    login="$(jq ".[] | select(.id == \"$id\")" <<< $logins)"
     copy_data $id $login $sessionkey
   fi
 }
