@@ -17,6 +17,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'preservim/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -26,6 +29,7 @@ Plug 'kassio/neoterm'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-test/vim-test'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -146,11 +150,46 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Shortcut for Nerd Tree
+" NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"shortcut to open NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1 " hide helper
+let g:NERDTreeIgnore = ['^node_modules$'] " ignore node_modules to increase load speed
+let g:NERDTreeStatusline = '' " set to empty to use lightline
+
+" Close window if NERDTree is the last one
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" NERDTree Syntax Highlight
+" Enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFolders = 1
+" Highlights the folder name
+let g:NERDTreeHighlightFoldersFullName = 1
+
+let s:git_orange = 'F54D27'
+let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
+
+
+ " NERDTree Git Plugin
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔︎",
+      \ 'Ignored'   : '☒',
+      \ "Unknown"   : "?"
+      \ }
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " kassio/neoterm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:neoterm_default_mod = 'botright'
