@@ -80,6 +80,14 @@ autocmd FileType markdown setlocal spell
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Configuration for fzf.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader><C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configuration for coc.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
