@@ -14,7 +14,8 @@ alias lt='ls --tree'
 
 #some shortcuts
 alias r='ranger'
-alias v='nvim'
+alias vi='nvim'
+alias v='vi'
 alias c='code'
 alias k='kubectl'
 alias tt='tmux a -t'
