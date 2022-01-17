@@ -47,14 +47,15 @@ set nobackup
 
 set ts=2
 set shiftwidth=2
-set softtabstop=2
-set expandtab
+set shiftround
+
 
 set splitbelow
 set splitright
 
 set autoindent
 set expandtab
+set softtabstop=2
 
 set encoding=utf-8
 
