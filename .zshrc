@@ -8,6 +8,9 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# add Homebrew bin dir
+export PATH="/opt/homebrew/bin:$PATH"
+
 export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 
 # Add local npm commands to the PATH
