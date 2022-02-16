@@ -173,8 +173,8 @@ lua << EOF
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', 'ga', ':Telescope lsp_code_actions<CR>')
-    buf_set_keymap('n', 'gA', ':Telescope lsp_range_code_actions<CR>')
+    buf_set_keymap('n', 'ga', ':Telescope lsp_code_actions<CR>', opts)
+    buf_set_keymap('n', 'gA', ':Telescope lsp_range_code_actions<CR>', opts)
   end
 
   -- Use a loop to conveniently call 'setup' on multiple servers and
