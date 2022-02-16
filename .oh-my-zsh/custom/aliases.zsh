@@ -20,5 +20,7 @@ alias c='code'
 alias k='kubectl'
 alias tt='tmux a -t'
 alias ape='pipenv shell'
+alias jn='jupyter notebook'
+alias jl='jupyter lab'
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
