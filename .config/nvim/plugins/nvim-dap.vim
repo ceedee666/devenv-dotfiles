@@ -7,6 +7,8 @@ nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Break
 nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
 nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
 nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
+nnoremap <silent> <leader>dk :lua require('dap.ui.widgets').hover()<CR>
+nnoremap <silent> <leader>dv :lua local widgets = require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>
 
 lua << EOF
   require('dap')
