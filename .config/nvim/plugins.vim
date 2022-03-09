@@ -28,5 +28,7 @@ Plug 'mfussenegger/nvim-lint'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
 call plug#end()
 
