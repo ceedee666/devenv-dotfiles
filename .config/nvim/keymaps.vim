@@ -4,6 +4,12 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Allow to rezies panes using <C-J>, <C-K>...
+map <leader><C-j> 10<C-W><
+map <leader><C-h> 10<C-W>+
+map <leader><C-k> 10<C-W>>
+map <leader><C-l> 10<C-W>-
+
 " Allow to move between panes using the <C-j>, <C-k> in terminal mode
 tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
