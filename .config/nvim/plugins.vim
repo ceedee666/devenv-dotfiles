@@ -30,5 +30,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-dap-python'
+
+Plug 'github/copilot.vim'
 call plug#end()
 
