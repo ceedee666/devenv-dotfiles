@@ -18,7 +18,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-startify'
 
 Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'sbdchd/neoformat'
