@@ -16,7 +16,7 @@ let g:vimspector_configurations = {
       \   "filetypes": [ "python" ],
       \   "configuration": {
       \     "request": "launch",
-      \     "type": "python",
+      \     "type": "python3",
       \     "cwd": "${fileDirname}",
       \     "args": [],
       \     "program": "${file}",
