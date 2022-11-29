@@ -34,3 +34,9 @@ set backspace=indent,eol,start
 
 " All numbers are treated as decimal numbers
 set nrformats=
+
+"Enable spell checking for text and md files
+set spelllang=en_gb
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+autocmd FileType text setlocal spell

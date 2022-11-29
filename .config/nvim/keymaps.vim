@@ -30,3 +30,7 @@ inoremap <C-space> <C-x><C-o>
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+"toggle spell checking
+nnoremap <silent> <leader>s :set spell!<CR>
+nnoremap <silent> <leader>S :set spell! spelllang=de<CR>
