@@ -6,6 +6,8 @@ vim.opt.splitright = true
 
 vim.opt.spelllang = "en_gb"
 
+vim.o.clipboard = "unnamedplus"
+
 vim.api.nvim_create_autocmd(
     { "BufRead", "BufNewFile" },
     { pattern = { "*.txt", "*.md", "gitcommit" }, command = "setlocal spell" }

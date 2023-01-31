@@ -1,3 +1,7 @@
+-- disable codeium default binding's
+-- needs to be set before the plugin in loaded
+vim.g.codeium_disable_bindings = 1
+
 return function(use)
   use({
     'nvim-tree/nvim-tree.lua',
@@ -24,4 +28,17 @@ return function(use)
   use({ 'mortepau/codicons.nvim',
     'theHamsta/nvim-dap-virtual-text',
     'nvim-telescope/telescope-dap.nvim' })
+
+  use({ 'ggandor/leap.nvim' })
+
+  use({ 'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer' })
+
+  use {
+    "folke/which-key.nvim"
+  }
+
+  use {
+    'Exafunction/codeium.vim'
+  }
 end
