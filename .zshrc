@@ -19,6 +19,10 @@ export PATH="node_modules/.bin:$PATH"
 # Add local .scripts folder to PATH
 export PATH="$HOME/.scripts:$PATH"
 
+# Add local .ghcup folder to PATH
+export PATH="$HOME/.ghcup/bin:$PATH"
+
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
