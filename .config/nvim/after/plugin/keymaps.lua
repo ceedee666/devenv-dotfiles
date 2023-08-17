@@ -1,9 +1,3 @@
--- Allow to move between panes using the <C-j>, <C-k> ...
-vim.keymap.set("", "<C-j>", "<C-W>j")
-vim.keymap.set("", "<C-k>", "<C-W>k")
-vim.keymap.set("", "<C-h>", "<C-W>h")
-vim.keymap.set("", "<C-l>", "<C-W>l")
-
 -- Allow resizing panes using <leader> <C-j>,...
 vim.keymap.set("", "<leader><C-h>", "10<C-W><")
 vim.keymap.set("", "<leader><C-j>", "10<C-W>+")

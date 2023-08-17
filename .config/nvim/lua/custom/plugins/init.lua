@@ -4,4 +4,5 @@ return {
     'mortepau/codicons.nvim',
     'theHamsta/nvim-dap-virtual-text',
     'nvim-telescope/telescope-dap.nvim',
+    'christoomey/vim-tmux-navigator'
 }
