@@ -5,7 +5,7 @@ vim.keymap.set("", "<leader><C-k>", "10<C-W>-")
 vim.keymap.set("", "<leader><C-l>", "10<C-W>>")
 
 -- toggle spell checking
-vim.keymap.set("n", "<leader>s", ":set spell!<CR>")
+vim.keymap.set("n", "<leader>s", ":set spell! spelllang=en<CR>")
 vim.keymap.set("n", "<leader>S", ":set spell! spelllang=de<CR>")
 
 -- toggle nvim.tree
