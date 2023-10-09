@@ -22,3 +22,10 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.o.tabstop = 4
+
+-- disable indent blank lines for certain filetypes
+require('ibl').setup {
+	exclude = {
+		filetypes = {'startify', 'log'}
+	}
+}

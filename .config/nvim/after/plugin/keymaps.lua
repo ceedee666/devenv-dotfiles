@@ -10,8 +10,12 @@ vim.keymap.set("n", "<leader>S", ":set spell! spelllang=de<CR>")
 
 -- toggle nvim.tree
 vim.keymap.set("", "<C-n>", ":NvimTreeToggle<CR>")
-vim.keymap.set("n", "<leader>F", ":Format<CR>")
 
+-- toggle wrapping
+vim.keymap.set("n", "<leader>w", ":set wrap!<CR>")
+
+-- formt source code
+vim.keymap.set("n", "<leader>F", ":Format<CR>")
 
 -- navigate to diagnostic message 
 vim.keymap.set('n', '<leader>pm', vim.diagnostic.goto_prev, { desc = "Go to [p]revious diagnostic [m]essage" })
