@@ -134,3 +134,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export SAPJDKHOME="/opt/homebrew/Caskroom/sapmachine-jdk/20.0.2/sapmachine-jdk-20.0.2.jdk/Contents/Home"
+
+# active zoxide
+eval "$(zoxide init zsh)"

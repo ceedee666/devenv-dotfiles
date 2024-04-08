@@ -1,5 +1,14 @@
 return {
   { "tpope/vim-fugitive" },
+  { "folke/flash.nvim" },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      icons = {
+        separator = "▶", -- symbol used between a key and it's label
+      },
+    },
+  },
   {
     "akinsho/toggleterm.nvim",
     version = "*",

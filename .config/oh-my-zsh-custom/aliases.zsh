@@ -35,3 +35,7 @@ alias python='python3'
 alias ape='pipenv shell'
 alias jn='jupyter notebook'
 alias jl='jupyter lab'
+
+# ssh kitten
+# see https://sw.kovidgoyal.net/kitty/kittens/ssh/
+alias s="kitten ssh"
