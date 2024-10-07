@@ -1,13 +1,34 @@
 return {
-  -- Setup null-ls with `black`
+
   {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.sources = vim.list_extend(opts.sources, {
-        nls.builtins.formatting.black,
-        nls.builtins.formatting.isort,
-      })
-    end,
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        basedpyright = {
+          -- disable unwanted hints
+          -- https://github.com/microsoft/pyright/discussions/5852#discussioncomment-6874502
+          capabilities = {
+            textDocument = {
+              publishDiagnostics = {
+                tagSupport = {
+                  valueSet = { 2 },
+                },
+              },
+            },
+          },
+          settings = {
+            basedpyright = {
+              analysis = {
+                typeCheckingMode = "standard", -- off, basic, standard, strict, all
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                autoImportCompletions = true,
+                diagnosticsMode = "openFilesOnly", -- workspace, openFilesOnly
+              },
+            },
+          },
+        },
+      },
+    },
   },
 }

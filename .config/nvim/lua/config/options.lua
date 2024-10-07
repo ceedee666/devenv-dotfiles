@@ -14,3 +14,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "gitcommit", "gitrebase" },
   command = "startinsert | 1",
 })
+
+vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_ruff = "ruff"
