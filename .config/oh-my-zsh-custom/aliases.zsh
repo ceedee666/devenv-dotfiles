@@ -20,6 +20,7 @@ alias c='code'
 alias k='kubectl'
 alias tt='tmux a -t'
 alias lg="lazygit"
+alias tf="terraform"
 
 
 alias tds='todoist sync'
@@ -32,10 +33,7 @@ eval $(thefuck --alias)
 
 # some shortcuts for python
 alias python='python3'
-alias ape='pipenv shell'
-alias jn='jupyter notebook'
+alias p='poetry'
+alias ape='eval $(poetry env activate)'
 alias jl='jupyter lab'
 
-# ssh kitten
-# see https://sw.kovidgoyal.net/kitty/kittens/ssh/
-alias s="kitten ssh"
