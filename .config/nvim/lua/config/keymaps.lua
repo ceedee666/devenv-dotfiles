@@ -5,3 +5,5 @@
 vim.keymap.set("n", "<leader>bw", ":set nowrap!<cr>", { desc = "Toggle word wrap" })
 vim.keymap.set("n", "<leader>bs", ":set spell spelllang=en<cr>", { desc = "Set English spell checking" })
 vim.keymap.set("n", "<leader>bS", ":set spell spelllang=de<cr>", { desc = "Set German spell checking" })
+
+vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })

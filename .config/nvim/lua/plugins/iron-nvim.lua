@@ -1,66 +1,45 @@
 return {
-
-  {
-    -- Modify which-key keys
-    "folke/which-key.nvim",
-    opts = function()
-      require("which-key").register({
-        ["<leader>r"] = {
-          name = "+REPL",
-        },
-      })
-    end,
-  },
-
-  {
-    "Vigemus/iron.nvim",
-    cmd = {
-      "IronRepl",
-      "IronReplHere",
-      "IronRestart",
-      "IronSend",
-      "IronFocus",
-      "IronHide",
-      "IronWatch",
-      "IronAttach",
-    },
-    keys = {
-      { "<leader>rs", "<cmd>IronRepl<cr>", desc = "Start a REPL" },
-      { "<leader>rr", "<cmd>IronRestart<cr>", desc = "Restart REPL" },
-      { "<leader>rf", "<cmd>IronFocus<cr>", desc = "Focus REPL" },
-      { "<leader>rh", "<cmd>IronHide<cr>", desc = "Hide REPL" },
-      { "<leader>rSl", "iron_send_line", desc = "Send line to REPL" },
-    },
-    main = "iron.core", -- <== This informs lazy.nvim to use the entrypoint of `iron.core` to load the configuration.
-    opts = {
+  "Vigemus/iron.nvim",
+  config = function()
+    local iron = require("iron.core")
+    iron.setup({
       config = {
-        -- Whether a repl should be discarded or not
         scratch_repl = true,
-        -- Your repl definitions come here
-        repl_definition = {},
-        -- How the repl window will be displayed
-        -- See below for more information
-        -- repl_open_cmd = require('iron.view').bottom(40),
+        repl_definition = {
+          sh = {
+            command = { "zsh" },
+          },
+          python = {
+            command = { "python3" },
+            format = require("iron.fts.common").bracketed_paste_python,
+          },
+          typescript = {
+            command = { "node" },
+          },
+        },
+        repl_open_cmd = "20 split",
       },
-      -- Iron doesn't set keymaps by default anymore.
-      -- You can set them here or manually add keymaps to the functions in iron.core
       keymaps = {
-        send_motion = "<leader>rSc",
-        visual_send = "<leader>rSc",
-        send_file = "<leader>rSf",
-        --send_line = "<leader>rSl",
-        send_mark = "<leader>rSm",
-        mark_motion = "<leader>rMc",
-        mark_visual = "<leader>rMc",
-        remove_mark = "<leader>rMd",
-        interrupt = "<leader>rSi",
+        send_line = "<leader>rl",
+        send_motion = "<leader>rs",
+        send_file = "<leader>ra",
+        send_paragraph = "<leader>rp",
+        send_until_cursor = "<leader>rh",
+        cr = "<leader>r<cr>",
+        interrupt = "<leader>rx",
         exit = "<leader>rq",
         clear = "<leader>rc",
+        visual_send = "<leader>r",
       },
-      -- If the highlight is on, you can change how it looks
-      -- For the available options, check nvim_set_hl
-      highlight = { italic = true },
-      ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
-    },
+      highlight = { italic = false },
+      ignore_blank_lines = true,
+    })
+  end,
+  keys = {
+    { "<leader>r", desc = "Repl", group = "repl", icon = "" },
+    { "<leader>rf", "<cmd>IronFocus<cr>", desc = "focus" },
+    { "<leader>rR", "<cmd>IronRestart<cr>", desc = "restart" },
+    { "<leader>rr", "<cmd>IronRepl<cr>", desc = "init/toggle" },
+    { "<leader>rH", "<cmd>IronHide<cr>", desc = "hide" },
   },
 }

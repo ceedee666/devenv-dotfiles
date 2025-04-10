@@ -26,12 +26,26 @@ return {
       close_if_last_window = true,
     },
   },
-  --{
-  --  "williamboman/mason.nvim",
-  --  opts = function(_, opts)
-  --    vim.list_extend(opts.ensure_installed, {
-  --      "ruff",
-  --    })
-  --  end,
-  --},
+  {
+    "mrcjkb/haskell-tools.nvim",
+    version = "^4",
+    ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
+    dependencies = {
+      { "nvim-telescope/telescope.nvim", optional = true },
+    },
+    config = function()
+      local ok, telescope = pcall(require, "telescope")
+      if ok then
+        telescope.load_extension("ht")
+      end
+    end,
+    keys = function()
+      local ht = require("haskell-tools")
+      return {
+        { "<leader>ht", ht.hoogle.hoogle_signature, desc = "search hoogle signature" },
+        { "<leader>he", ht.lsp.buf_eval_all, desc = "evaluate all" },
+        { "<leader>hr", ht.repl.toggle, desc = "toggle repl" },
+      }
+    end,
+  },
 }
